@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&display=swap");
+  /* misure dal frame Figma (1082px di larghezza) espresse in vw */
+  * { box-sizing: border-box; margin: 0; }
+  html, body { height: 100%; background: #fff; }
+  body {
+    font: 400 3.9vw/1.2 "IBM Plex Sans", system-ui, sans-serif; color: #000;
+    -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent;
+    display: flex; flex-direction: column;
+    padding: max(9vw, env(safe-area-inset-top)) 9.7vw max(7vw, env(safe-area-inset-bottom));
+  }
+
+  /* card: tap flips photo → QR */
+  .card { aspect-ratio: 1; perspective: 1200px; cursor: pointer; }
+  .card > div {
+    position: relative; width: 100%; height: 100%;
+    transform-style: preserve-3d; transition: transform .7s cubic-bezier(.4,0,.2,1);
+  }
+  .card.flipped > div { transform: rotateY(180deg); }
+  .face {
+    position: absolute; inset: 0; border-radius: 6%; overflow: hidden;
+    backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  }
+  .face img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .back { transform: rotateY(180deg); display: grid; place-items: center; background: #000; }
+  .back img { width: 68%; height: auto; }
+
+  hr { border: 0; border-top: 1px solid #000; margin: 0; }
+  .who { margin: 5.5vw 0; }
+
+  /* chips: horizontal scroll, invert on tap */
+  .links { display: flex; gap: 2.3vw; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 12vw; scrollbar-width: none; margin: 6.5vw -12vw 0; padding: 2px 12vw; }
+  .links::-webkit-scrollbar { display: none; }
+  .links a {
+    flex: 0 0 auto; scroll-snap-align: start; min-width: 25.4vw; padding: 0 3vw; line-height: 5.8vw;
+    border: 1px solid #000; border-radius: 1.85vw; text-align: center;
+    color: #000; text-decoration: none; font-size: 3.33vw;
+  }
+  .links a.on, .links a:active, .links a:focus-visible { background: #000; color: #fff; outline: none; }
+
+  footer { margin-top: auto; padding-top: 12vw; display: flex; justify-content: space-between; align-items: flex-end; }
+  footer b { font-weight: 400; font-size: 4.44vw; }
+  .dots { display: grid; grid-template-columns: repeat(3, .85vw); gap: 5.3vw 4.8vw; margin-bottom: .6vw; }
+  .dots i { width: .85vw; height: .85vw; background: #000; border-radius: 50%; }
+
+  @media (min-width: 600px) { body { max-width: 600px; margin: 0 auto; font-size: 23px; } .links a { font-size: 20px; } footer b { font-size: 27px; } }
+  .qrbox { background:#000; width:100%; height:100%; display:grid; place-items:center; }
+  .qrbox svg { width:68%; height:auto; }
+  @media (prefers-reduced-motion: reduce) { .card > div { transition: none; } }
