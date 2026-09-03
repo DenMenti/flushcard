@@ -47,7 +47,7 @@
     if (el.id === 'share') return share();
     if (!el.dataset.app) return window.open(el.href, '_blank');
     location.href = el.dataset.app;   // app se installata, altrimenti il sito
-    setTimeout(() => { if (!document.hidden) window.open(el.href, '_blank'); }, 800);
+    setTimeout(() => { if (!document.hidden) window.open(el.href, '_blank'); }, 450); // <1s dal tap o iOS lo blocca
   }
   async function share() {
     const f = new File([vcf], `${nome}.vcf`, { type: 'text/vcard' });
