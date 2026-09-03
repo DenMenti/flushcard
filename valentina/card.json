@@ -1,0 +1,15 @@
+{
+  "nome": "Valentina", "cognome": "Salmoiraghi",
+  "ruolo": "Junior Art Director",
+  "azienda": "flush design s.r.l.",
+  "cellulare": "3463295489",
+  "telefono": "+39059640101",
+  "email": "valentinasalmoiraghi@flushdesign.it",
+  "indirizzo": {"via": "Via Tolomeo, 23", "citta": "Carpi", "provincia": "MO", "cap": "41012", "paese": "Italia"},
+  "sito": "https://www.flushdesign.it",
+  "link": [
+    {"testo": "flushdesign.it", "url": "https://www.flushdesign.it"},
+    {"testo": "linkedin", "url": "https://www.linkedin.com/in/valentina-salmoiraghi-15577734a/", "app": "linkedin://in/valentina-salmoiraghi-15577734a"},
+    {"testo": "portfolio", "url": "https://www.behance.net/valentisalmoir", "app": "behance://user/valentisalmoir"}
+  ]
+}
