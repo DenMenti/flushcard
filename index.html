@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Denis Sentimenti · flushdesign</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  html, body { height: 100%; background: #fff; }
+  body {
+    font: 400 17px/1.25 Inter, system-ui, sans-serif; color: #000;
+    -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent;
+    display: flex; flex-direction: column;
+    padding: max(48px, env(safe-area-inset-top)) 10% max(40px, env(safe-area-inset-bottom));
+  }
+
+  /* card: tap flips photo → QR */
+  .card { aspect-ratio: 1; perspective: 1200px; cursor: pointer; }
+  .card > div {
+    position: relative; width: 100%; height: 100%;
+    transform-style: preserve-3d; transition: transform .7s cubic-bezier(.4,0,.2,1);
+  }
+  .card.flipped > div { transform: rotateY(180deg); }
+  .face {
+    position: absolute; inset: 0; border-radius: 6%; overflow: hidden;
+    backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  }
+  .face img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .back { transform: rotateY(180deg); border: 1.5px solid #000; display: grid; place-items: center; background: #fff; }
+  .back img { width: 68%; height: auto; }
+
+  hr { border: 0; border-top: 1.5px solid #000; margin: 26px 0; }
+  .who { font-size: clamp(16px, 4.2vw, 22px); }
+
+  /* chips: horizontal scroll, invert on tap */
+  .links { display: flex; gap: 6%; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 12.5%; scrollbar-width: none; margin: 0 -12.5%; padding: 2px 12.5%; }
+  .links::-webkit-scrollbar { display: none; }
+  .links a {
+    flex: 0 0 auto; scroll-snap-align: start; min-width: 27%; padding: 12px 22px;
+    border: 1.5px solid #000; border-radius: 999px; text-align: center;
+    color: #000; text-decoration: none; font-size: clamp(16px, 4.2vw, 20px);
+    transition: background .1s, color .1s;
+  }
+  .links a:active, .links a:focus-visible { background: #000; color: #fff; outline: none; }
+
+  footer { margin-top: auto; padding-top: 48px; display: flex; justify-content: space-between; align-items: flex-end; }
+  footer b { font-weight: 500; font-size: clamp(22px, 6.4vw, 30px); letter-spacing: -.01em; }
+  .dots { display: grid; grid-template-columns: repeat(3, 8px); gap: 36px 40px; margin-right: 2px; }
+  .dots i { width: 8px; height: 8px; background: #000; border-radius: 50%; }
+
+  @media (prefers-reduced-motion: reduce) { .card > div { transition: none; } }
+</style>
+</head>
+<body>
+
+<div class="card" onclick="this.classList.toggle('flipped')" role="button" tabindex="0" aria-label="Foto: tocca per il QR con il contatto">
+  <div>
+    <div class="face"><img src="card.png" alt="Denis Sentimenti"></div>
+    <div class="face back"><img src="qr.svg" alt="QR con la vCard di Denis Sentimenti"></div>
+  </div>
+</div>
+
+<hr>
+<p class="who">Denis Sentimenti<br>Head of Design / Senior Art Director</p>
+<hr>
+
+<nav class="links">
+  <a href="https://www.flushdesign.it">flushdesign.it</a>
+  <a href="https://www.linkedin.com/in/">linkedin</a>
+  <a href="https://www.flushdesign.it">portfolio</a>
+  <a href="denis.vcf" id="share">invia contatto</a>
+</nav>
+
+<footer>
+  <b>flushdesign</b>
+  <div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+</footer>
+
+<script>
+  // ponytail: keyboard flip only; no service worker (GitHub Pages is https, "aggiungi a Home" works without)
+  document.querySelector('.card').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.currentTarget.click(); } });
+
+  // invia contatto: share sheet nativo (AirDrop, WhatsApp, Mail...) con il .vcf; fallback: apre il file
+  share.onclick = async e => {
+    if (!navigator.share) return;
+    e.preventDefault();
+    const f = new File([await (await fetch('denis.vcf')).blob()], 'Denis Sentimenti.vcf', {type:'text/vcard'});
+    navigator.share(navigator.canShare?.({files:[f]}) ? {files:[f]} : {title:'Denis Sentimenti', url:location.href});
+  };
+</script>
+</body>
+</html>
