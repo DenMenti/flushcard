@@ -70,9 +70,9 @@
 <hr>
 
 <nav class="links">
-  <a href="https://www.flushdesign.it">flushdesign.it</a>
+  <a href="https://www.flushdesign.it" target="_blank" rel="noopener">flushdesign.it</a>
   <a href="https://www.linkedin.com/in/denissentimenti/" data-app="linkedin://in/denissentimenti">linkedin</a>
-  <a href="https://sgtpepe.notion.site/effed2e1eeda4d0b9b7c78e0f87373c3?pvs=143">portfolio</a>
+  <a href="https://sgtpepe.notion.site/effed2e1eeda4d0b9b7c78e0f87373c3?pvs=143" target="_blank" rel="noopener">portfolio</a>
   <a href="denis.vcf" id="share">invia contatto</a>
 </nav>
 
@@ -96,7 +96,7 @@
   // app prima, sito se l'app non c'è (iOS apre gli https in Safari anche con l'app installata)
   for (const a of document.querySelectorAll('[data-app]')) a.onclick = e => {
     e.preventDefault(); location.href = a.dataset.app;
-    setTimeout(() => { if (!document.hidden) location.href = a.href; }, 800);
+    setTimeout(() => { if (!document.hidden) window.open(a.href, "_blank"); }, 800);
   };
 </script>
 </body>
