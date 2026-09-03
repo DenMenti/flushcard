@@ -1,15 +1,15 @@
 {
-  "nome": "Denis", "cognome": "Sentimenti",
-  "ruolo": "Head of Design / Senior Art Director",
+  "nome": "Giorgia", "cognome": "Pederzini",
+  "ruolo": "Project Coordinator & Visual Designer",
   "azienda": "flush design s.r.l.",
-  "cellulare": "+393807137922",
+  "cellulare": "+393464378199",
   "telefono": "+39059640101",
-  "email": "denissentimenti@flushdesign.it",
+  "email": "giorgiapederzini@flushdesign.it",
   "indirizzo": {"via": "Via Tolomeo, 23", "citta": "Carpi", "provincia": "MO", "cap": "41012", "paese": "Italia"},
   "sito": "https://www.flushdesign.it",
   "link": [
     {"testo": "flushdesign.it", "url": "https://www.flushdesign.it"},
-    {"testo": "linkedin", "url": "https://www.linkedin.com/in/denissentimenti/", "app": "linkedin://in/denissentimenti"},
-    {"testo": "portfolio", "url": "https://sgtpepe.notion.site/effed2e1eeda4d0b9b7c78e0f87373c3?pvs=143"}
+    {"testo": "linkedin", "url": "https://www.linkedin.com/in/giorgia-pederzini-b97415231/", "app": "linkedin://in/giorgia-pederzini-b97415231"},
+    {"testo": "portfolio", "url": "https://XXXXXXX"}
   ]
 }
